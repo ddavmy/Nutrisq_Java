@@ -1,5 +1,6 @@
 package com.nutrisqproject.Project01.config;
 
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -19,6 +20,7 @@ import java.util.List;
 import static java.util.Collections.singletonList;
 
 @Configuration
+@EnableCaching
 public class Config {
     @Bean
     public Docket api() {
