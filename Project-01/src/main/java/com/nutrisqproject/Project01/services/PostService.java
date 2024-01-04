@@ -3,11 +3,13 @@ package com.nutrisqproject.Project01.services;
 import com.nutrisqproject.Project01.model.Comment;
 import com.nutrisqproject.Project01.model.Post;
 import com.nutrisqproject.Project01.repository.CommentRepository;
+import com.nutrisqproject.Project01.repository.PostRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +18,7 @@ import java.util.stream.Collectors;
 public class PostService {
 
     private static final int PAGE_SIZE = 3;
-    private final com.nutrisqproject.Project01.Repository.PostRepository postRepository;
+    private final PostRepository postRepository;
     private final CommentRepository commentRepository;
 
     public List<Post> getPosts(int page, Sort.Direction sort) {
@@ -45,5 +47,21 @@ public class PostService {
         return comments.stream()
                 .filter(comment -> comment.getPostId() == id)
                 .collect(Collectors.toList());
+    }
+
+    public Post addPost(Post post) {
+        return postRepository.save(post);
+    }
+
+    @Transactional
+    public Post editPost(Post post) {
+        Post postEdited = postRepository.findById(post.getId()).orElseThrow();
+        postEdited.setTitle(post.getTitle());
+        postEdited.setContent(post.getContent());
+        return postEdited;
+    }
+
+    public void deletePost(long id) {
+        postRepository.deleteById(id);
     }
 }

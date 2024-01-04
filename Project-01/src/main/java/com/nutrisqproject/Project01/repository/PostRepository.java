@@ -1,4 +1,4 @@
-package com.nutrisqproject.Project01.Repository;
+package com.nutrisqproject.Project01.repository;
 
 import com.nutrisqproject.Project01.model.Post;
 import org.springframework.data.domain.Pageable;
