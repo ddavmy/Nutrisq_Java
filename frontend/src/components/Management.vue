@@ -18,7 +18,7 @@
           <td>{{ user.email }}</td>
           <td>{{ user.name }}</td>
           <td>{{ user.lastName }}</td>
-          <td>{{ user.roleName }}</td>
+          <td>{{ user.roleName.role }}</td>
           <td>
             <button type="button" class="btn btn-outline-primary">Edit</button>
             <button type="button" class="btn btn-outline-primary">Delete</button>
